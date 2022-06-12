@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" href="plugins/jPlayer-2.9.2/dist/skin/pink.flag/css/jplayer.pink.flag.css">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img class="logo" src="images/logo.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Главная</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Категории
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('smartphone', 'Смартфоны')">Смартфоны</li>
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('tablet', 'Планшеты')">Планшеты</li>
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('notebook', 'Ноутбуки')">Ноутбуки</li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link" data-bs-toggle="modal" data-bs-target="#basket">Корзина</div>
+            </li>
+          </ul>
+          <form id="found" class="d-flex" role="search">
+            <input id="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+            <div id="found-products"></div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="mobile">
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="images/logo.png" alt="">
+      </a>
+      <div class="burger">
+        <div class="burger-button">
+          <span></span>
+        </div>
+        <div class="mobile-menu">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Главная</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Категории
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('smartphone', 'Смартфоны')">Смартфоны</li>
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('tablet', 'Планшеты')">Планшеты</li>
+                <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categories"
+                  onclick="category('notebook', 'Ноутбуки')">Ноутбуки</li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link" data-bs-toggle="modal" data-bs-target="#basket">Корзина</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="modal fade" id="categories" tabindex="-1" aria-labelledby="categoriesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoriesLabel">Смартфоны</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="categoriesItems" class="modal-body"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="basket" tabindex="-1" aria-labelledby="basketLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="basketLabel">Корзина</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="basketInner" class="modal-body">Корзина пуста</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить покупки</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="buy()">Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider">
+    <div class="slide">
+      <img src="images/slider-1.jpg" class="d-block w-100" alt="slide">
+    </div>
+    <div class="slide">
+      <img src="images/slider-2.webp" class="d-block w-100" alt="slide">
+    </div>
+    <div class="slide">
+      <img src="images/slider-3.jpg" class="d-block w-100" alt="slide">
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="container">
+      <div class="info__inner">
+        <div id="music">
+          <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+          <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+            <div class="jp-type-single">
+              <div class="jp-gui jp-interface">
+                <div class="jp-volume-controls">
+                  <button class="jp-mute" role="button" tabindex="0">mute</button>
+                  <button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+                  <div class="jp-volume-bar">
+                    <div class="jp-volume-bar-value"></div>
+                  </div>
+                </div>
+                <div class="jp-controls-holder">
+                  <div class="jp-controls">
+                    <button class="jp-play" role="button" tabindex="0">play</button>
+                    <button class="jp-stop" role="button" tabindex="0">stop</button>
+                  </div>
+                  <div class="jp-progress">
+                    <div class="jp-seek-bar">
+                      <div class="jp-play-bar"></div>
+                    </div>
+                  </div>
+                  <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                  <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                  <div class="jp-toggles">
+                    <button class="jp-repeat" role="button" tabindex="0">repeat</button>
+                  </div>
+                </div>
+              </div>
+              <div class="jp-details">
+                <div class="jp-title" aria-label="title">&nbsp;</div>
+              </div>
+              <div class="jp-no-solution">
+                <span>Update Required</span>
+                To play the media you will need to either update your browser to a recent version or update your <a
+                  href="https://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="weather">
+          <div class="weather-wrapper hide">
+            <div class="elfsight-app-73aefaaa-3cec-4e14-9b97-0a66d0596a72"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="products" class="container mt-5 mb-5"></div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__inner">
+          <p>Tech Shop</p>
+          <div class="da-share-html da-fb da-tw da-pi da-gp"></div>
+        </div>
+      </div>
+    </footer>
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+      <i class="fa fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="plugins/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js"></script>
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+    <script src="plugins/social-buttons-da-share/jquery.da-share.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
