@@ -18,10 +18,6 @@ $(function () {
 
   $('.burger-button').click(() => {
     $('.burger').toggleClass('active')
-    $('html, body').css({
-      overflow: 'hidden',
-      height: '100%'
-    })
   })
 
   $("#jquery_jplayer_1").jPlayer({
